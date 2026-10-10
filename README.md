@@ -1,4 +1,4 @@
-# CSBU109 — Backend & Database Development | Labs
+# CSBU109 — Database and Web Application Development | Labs
 
 > Lab exercises for CSBU109.
 
@@ -8,6 +8,7 @@
 | --- | --- |
 | Name | Lê Minh Tân |
 | ID | 25560052 |
+| Term | 3rd |
 | Class | CSBU109.R11.KHBC |
 | Lecturer | Nguyen Thanh Binh, Nguyen Phan Thao Duyen |
 
