@@ -1,0 +1,19 @@
+{
+  "name": "lab3-orders-api",
+  "version": "1.0.0",
+  "description": "Lab 3 homework: orders & inventory management API (Express + MySQL)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "db:init": "mysql -u root < sql/schema.sql"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "mysql2": "^3.15.3",
+    "swagger-jsdoc": "^6.3.0",
+    "swagger-ui-express": "^5.0.1"
+  }
+}

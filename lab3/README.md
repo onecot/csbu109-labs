@@ -1,6 +1,6 @@
 # Lab 3
 
-> RESTful API with Express Router + Mongoose, tested with Postman, documented with Swagger UI (OpenAPI 3.0).
+> RESTful API with Express Router + Mongoose, documented and tested through Swagger UI (OpenAPI 3.0).
 
 ## Exercises
 
@@ -9,7 +9,7 @@
 | In-class | Ex1 RESTful Product API | `routes/` `controllers/` `models/` split, product CRUD, category/min-max price filters, pagination | `inclass/lab3-api/server.js` |
 | In-class | Ex1 extended (req 1, 2, 5, 7) | Category CRUD, name validation middleware, 400 vs 404 handling, pagination + sorting | `inclass/lab3-api/routes/category.routes.js` |
 | In-class | Ex2 Swagger docs | `swagger-jsdoc` + `swagger-ui-express`, component schemas, reusable `IdPathParam` via `$ref`, Products/Categories tags | `inclass/lab3-api/config/swagger.js` |
-| Homework | Orders & inventory API (MySQL) | not started | `homework/` |
+| Homework | Orders & inventory API (MySQL) | transactions, `FOR UPDATE` stock locks, JOIN/`GROUP BY` analytics, status state machine, stock restore, Swagger | `homework/orders-api/server.js` |
 
 ## Run
 
@@ -23,6 +23,15 @@ npm start         # http://localhost:3000
 - API: <http://localhost:3000/api/products>, <http://localhost:3000/api/categories>
 - Docs: <http://localhost:3000/api-docs>
 
+Homework (MySQL orders API, separate app on port 3001):
+
+```bash
+cd lab3/homework/orders-api
+mysql -u root -p < sql/schema.sql   # omit -p when root has no password
+npm install
+npm start                        # http://localhost:3001, docs at /api-docs
+```
+
 ## Notes
 
 - MongoDB must listen on `127.0.0.1:27017`; database is `shop_lab3_db`.
@@ -31,4 +40,5 @@ npm start         # http://localhost:3000
 - Extended requirements done: Ex1 #1, #2, #5, #7; Ex2 #1–#4. Ex1 #6 (`PATCH /categories/:id` with `runValidators`) is present because #5 needs the update route.
 - Ex2 #5 (Try it out in the browser) verified with equivalent HTTP calls; manual click-through still to do.
 - Skipped on purpose: Ex1 #3 (auto-slug hook), Ex1 #4 (unique name/slug + 409), Ex2 #6 (Swagger screenshot for report).
-- Full API reference: [`inclass/lab3-api/README.md`](./inclass/lab3-api/README.md).
+- Full API reference: [`inclass/lab3-api/README.md`](./inclass/lab3-api/README.md) and [`homework/orders-api/README.md`](./homework/orders-api/README.md).
+- Homework report: [`homework/LAB3_25560052.pdf`](./homework/LAB3_25560052.pdf). Endpoint evidence was captured with Swagger "Try it out"; POST/PATCH bodies and expected values are documented in the homework README.

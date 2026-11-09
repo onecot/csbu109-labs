@@ -126,7 +126,7 @@ Handlers return `404` explicitly when a well-formed id matches no document. Vali
 - Reusable path param: `components.parameters.IdPathParam`, referenced by `$ref` on every `{id}` route
 - Server base URL: `http://localhost:3000/api`
 
-## Postman checklist
+## Manual test checklist (Postman or Swagger)
 
 After `npm run seed` and `npm start` (counts assume freshly seeded data):
 

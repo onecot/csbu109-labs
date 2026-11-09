@@ -18,7 +18,7 @@
 | --- | --- |
 | [lab1/](./lab1/) | MySQL DDL/DML + JOIN; mysql2 CRUD; Mongo shell agg; Mongoose validation/middleware/N-N |
 | [lab2/](./lab2/) | React + Vite: intro (props/state/effect), shop/cart (own data), DummyJSON API Blog (list/search/detail/add/delete) |
-| [lab3/](./lab3/) | Express Router + Mongoose REST API (CRUD, filters, pagination), Swagger UI / OpenAPI 3.0 docs |
+| [lab3/](./lab3/) | Express Router + Mongoose REST API (CRUD, filters, pagination), Swagger UI / OpenAPI 3.0 docs; homework orders API on MySQL (transactions, JOINs, analytics) |
 
 ## Prerequisites
 
