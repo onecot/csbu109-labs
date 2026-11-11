@@ -19,10 +19,11 @@
 | [lab1/](./lab1/) | MySQL DDL/DML + JOIN; mysql2 CRUD; Mongo shell agg; Mongoose validation/middleware/N-N |
 | [lab2/](./lab2/) | React + Vite: intro (props/state/effect), shop/cart (own data), DummyJSON API Blog (list/search/detail/add/delete) |
 | [lab3/](./lab3/) | Express Router + Mongoose REST API (CRUD, filters, pagination), Swagger UI / OpenAPI 3.0 docs; homework orders API on MySQL (transactions, JOINs, analytics) |
+| [lab4/](./lab4/) | CORS + Fetch UI on a CRUD API (update, category filter, error banner); Multer upload/download/delete + file gallery; Axios external API (Open-Meteo weather) with cache, timeout and retry |
 
 ## Prerequisites
 
-MySQL, MongoDB, Node.js (`mysql2`, `mongoose`, `dotenv`); Node 20.19+ / 22.12+ + Vite for lab2 React apps. Lab3 adds Express 5, `swagger-jsdoc` and `swagger-ui-express`.
+MySQL, MongoDB, Node.js (`mysql2`, `mongoose`, `dotenv`); Node 20.19+ / 22.12+ + Vite for lab2 React apps. Lab3 adds Express 5, `swagger-jsdoc` and `swagger-ui-express`. Lab4 adds `cors`, `multer`, `axios`.
 
 ## Getting Started
 
