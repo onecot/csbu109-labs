@@ -1,0 +1,16 @@
+{
+  "name": "lab5-ex2",
+  "version": "1.0.0",
+  "description": "Server code lives in the shared Lab 5 app: [`../../homework/be`](../../homework/be) (Socket.IO added on top of the Lab 4 ShopAdmin API).",
+  "main": "test-client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "socket.io-client": "^4.8.4"
+  }
+}

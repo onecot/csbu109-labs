@@ -1,0 +1,22 @@
+{
+  "name": "shopadmin-api",
+  "version": "1.0.0",
+  "description": "ShopAdmin backend for Lab 4 homework",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "seed": "node src/seed.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.3",
+    "express": "^5.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.11.4",
+    "multer": "^2.5.0",
+    "node-cron": "^4.6.0",
+    "socket.io": "^4.8.4"
+  }
+}
