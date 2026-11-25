@@ -26,6 +26,11 @@ socket.on('newUserRegistered', (user) => {
   console.log(`[client] newUserRegistered: ${user.fullName} (${user.email}) type=${user.type}`);
 });
 
+// Homework: sent only to the order owner's private room user:<id>
+socket.on('orderStatusUpdated', (payload) => {
+  console.log(`[client] orderStatusUpdated: order=${payload.orderId} status=${payload.status}`);
+});
+
 socket.on('connect_error', (err) => {
   console.error(`[client] connect_error: ${err.message}`);
   process.exit(1);

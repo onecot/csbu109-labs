@@ -39,6 +39,9 @@ In another terminal, log in as an **admin** and update a product
 `productUpdated` event without any refresh. An invalid/expired token makes the
 handshake fail with `Authentication failed` (401-style connection error).
 
+The same client also prints `newUserRegistered` (admins only) and
+`orderStatusUpdated` (own orders only) — used by the Lab 5 homework.
+
 ## Notes
 
 - Socket.IO must run as **one process**. Under PM2 cluster (`instances: 4`) the

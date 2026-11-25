@@ -6,6 +6,7 @@ const connectDB = require('./config/db');
 const { initSocket } = require('./socket');
 const { startInventoryReportJob } = require('./jobs/inventoryReport');
 const { startAutoArchiveJob } = require('./jobs/autoArchive');
+const { startDailyRevenueReportJob } = require('./jobs/dailyRevenueReport');
 
 const PORT = process.env.PORT || 4000;
 
@@ -22,6 +23,7 @@ connectDB()
     // Under PM2 cluster every worker would run its own copy.
     startInventoryReportJob();
     startAutoArchiveJob();
+    startDailyRevenueReportJob();
   })
   .catch((error) => {
     console.error('MongoDB connection failed:', error.message);

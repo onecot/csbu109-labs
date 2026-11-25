@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema({
   },
   passwordHash: {
     type: String,
-    required: [true, 'Password hash is required'],
+    // Not required: users created through Google Sign-In have no password
     select: false
   },
   avatarUrl: {

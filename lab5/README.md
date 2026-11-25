@@ -9,7 +9,7 @@
 | In-class | Ex1 PM2 cluster | `ecosystem.config.js`, 4 workers, `/health` exposing `pid`/`uptime`, reload vs restart, crash recovery, pm2-logrotate, startup/save | `inclass/lab5-ex1/ecosystem.config.js` |
 | In-class | Ex2 Socket.IO | JWT handshake auth, `products` room, `productUpdated` broadcast on `PUT /products/:id`, admin-only `newUserRegistered` notification | `homework/be/src/socket.js` |
 | In-class | Ex3 node-cron | daily inventory report per category (aggregation: group/lookup/project/sort), hourly auto-archive of stale out-of-stock products, `status` field | `homework/be/src/jobs/` |
-| Homework | Capstone extension | Orders, Google Sign-In, real-time order status, Gmail notifications, daily revenue report | `homework/be/src/server.js` |
+| Homework | Capstone extension | Orders (server-side total, own history, admin list/status), Google Sign-In, real-time `orderStatusUpdated` to the customer's room, Gmail order/status emails, daily revenue cron | `homework/be/src/server.js` |
 
 ## Run
 
@@ -48,6 +48,18 @@ ARCHIVE_SCHEDULE='*/10 * * * * *' \
 ARCHIVE_AFTER_MINUTES=0 npm start
 # then set a product's quantity to 0 (PUT /api/v1/products/:id as admin)
 ```
+
+Homework (orders, Google, email, revenue):
+
+```bash
+# .env: GOOGLE_CLIENT_ID, GMAIL_USER, GMAIL_APP_PASSWORD
+# LAB5_HW_FE/config.js: GOOGLE_CLIENT_ID must be the same Client ID
+REVENUE_SCHEDULE='* * * * *' npm start     # revenue job every minute for the demo
+```
+
+- `/orders`: cart → Place order (normal user), admin changes status in "All orders".
+- The status change reaches the customer's browser live (`user:<id>` room) and sends an email.
+- Google users are created on first sign-in; an existing email/password account resolves to the same user.
 
 ## Notes
 

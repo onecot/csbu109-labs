@@ -1,6 +1,7 @@
 // Register / login / current profile (JWT)
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { OAuth2Client } = require('google-auth-library');
 const User = require('../models/user.model');
 const { ADMINS_ROOM } = require('../socket');
 
@@ -52,9 +53,58 @@ exports.login = async (req, res, next) => {
 
     // passwordHash has select:false, so it must be requested explicitly
     const user = await User.findOne({ email }).select('+passwordHash');
-    const isMatch = user && await bcrypt.compare(password, user.passwordHash);
+    // Google-only accounts have no password hash
+    const isMatch = user && user.passwordHash && await bcrypt.compare(password, user.passwordHash);
     if (!isMatch) {
       return res.status(401).json({ success: false, message: 'Invalid email or password' });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: { token: signToken(user), user }
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// POST /api/v1/auth/google  body: { idToken }
+// Verifies the Google ID token, then finds-or-creates the user by verified email.
+exports.googleLogin = async (req, res, next) => {
+  try {
+    const { idToken } = req.body;
+    if (!idToken) {
+      return res.status(400).json({ success: false, message: 'idToken is required' });
+    }
+    if (!process.env.GOOGLE_CLIENT_ID) {
+      return res.status(500).json({ success: false, message: 'GOOGLE_CLIENT_ID is not configured on the server' });
+    }
+
+    let payload;
+    try {
+      const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+      const ticket = await client.verifyIdToken({
+        idToken,
+        audience: process.env.GOOGLE_CLIENT_ID
+      });
+      payload = ticket.getPayload();
+    } catch (error) {
+      return res.status(401).json({ success: false, message: 'Invalid Google token' });
+    }
+
+    const { email, name, email_verified } = payload;
+    if (!email || !email_verified) {
+      return res.status(401).json({ success: false, message: 'Google account email is not verified' });
+    }
+
+    // Same account as the email/password login when the email already exists
+    let user = await User.findOne({ email });
+    if (!user) {
+      user = await User.create({
+        fullName: name || email.split('@')[0],
+        email,
+        type: 'normal'
+      });
     }
 
     res.status(200).json({
